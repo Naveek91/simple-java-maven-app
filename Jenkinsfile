@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     // Run SonarQube analysis
-                    withSonarQubeEnv('SonarQubeServerName') {
+                    withSonarQubeEnv('SonarQube') {
                         bat 'mvn sonar:sonar'
                     }
                 }

@@ -25,16 +25,24 @@ pipeline {
                 }
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    // Run SonarQube analysis
+                    withSonarQubeEnv('SonarQubeServerName') {
+                        bat 'mvn sonar:sonar'
+                    }
+                }
+            }
+        }
         stage('Deliver') {
             steps {
                 script {
                     // Specify the full path to the deliver.sh script
                     bat '.\\jenkins\\scripts\\deliver.sh'
-
                 }
             }
         }
     }
     // Add post-build actions, notifications, etc.
 }
-

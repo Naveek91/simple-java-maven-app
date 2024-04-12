@@ -1,30 +1,38 @@
 pipeline {
     agent {
-        docker {
-            image 'maven:latest'
-            args '-v /root/.m2:/root/.m2'
-        }
+        label 'docker' // Assuming there's a Jenkins agent label named 'docker' configured to run Docker containers on Windows
     }
     stages {
         stage('Build') {
             steps {
-                bat 'mvn -B -DskipTests clean package'
+                script {
+                    // Run Maven build inside the Docker container
+                    bat 'mvn -B -DskipTests clean package'
+                }
             }
         }
         stage('Test') {
             steps {
-                bat 'mvn test'
+                script {
+                    // Run Maven tests inside the Docker container
+                    bat 'mvn test'
+                }
             }
             post {
                 always {
+                    // Publish JUnit test results
                     junit 'target/surefire-reports/*.xml'
                 }
             }
         }
         stage('Deliver') {
             steps {
-                bat './jenkins/scripts/deliver.sh'
+                script {
+                    // Run delivery script
+                    bat './jenkins/scripts/deliver.sh'
+                }
             }
         }
     }
+    // Add post-build actions, notifications, etc.
 }

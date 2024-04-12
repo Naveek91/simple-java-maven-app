@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     // Specify the full path to the deliver.sh script
-                    bat 'C:\\ProgramData\\Jenkins\\jenkins\\workspace\\testpipeline\\jenkins\\scripts\\deliver.sh'
+                    bat 'D:\\jenkins\\scripts\\deliver.sh'
 
                 }
             }

@@ -28,11 +28,12 @@ pipeline {
         stage('Deliver') {
             steps {
                 script {
-                    // Run delivery script
-                    bat './jenkins/scripts/deliver.sh'
+                    // Specify the full path to the deliver.sh script
+                    bat 'C:\\path\\to\\jenkins\\scripts\\deliver.sh'
                 }
             }
         }
     }
     // Add post-build actions, notifications, etc.
 }
+

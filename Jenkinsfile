@@ -26,6 +26,16 @@ pipeline {
                 }
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    // Run SonarQube analysis
+                    withSonarQubeEnv('SonarQube') {
+                        bat 'mvn sonar:sonar'
+                    }
+                }
+            }
+        }
         stage('Deliver') {
             steps {
                 script {

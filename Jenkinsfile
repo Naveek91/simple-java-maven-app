@@ -2,9 +2,7 @@ pipeline {
     agent {
         label 'docker' // Assuming there's a Jenkins agent label named 'docker' configured to run Docker containers on Windows
     }
-    triggers {
-        scm('*/15 * * * *') // Poll SCM every 15 minutes
-    }
+    
     stages {
         stage('Build') {
             steps {
